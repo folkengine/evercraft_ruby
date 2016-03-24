@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'colorize'
+gem 'hanami-validations'
 gem 'pry'
+gem 'random_name_generator'
 
 group :development do
   gem 'minitest'

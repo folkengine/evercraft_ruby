@@ -1,8 +1,8 @@
 require 'evercraft'
 require_relative '../test_helper'
 
-class TestVersion < Minitest::Test
-  def test_version
+class TestCharacter < Minitest::Test
+  def test_character
     refute_empty(Evercraft::VERSION)
   end
 end
