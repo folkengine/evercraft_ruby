@@ -34,7 +34,7 @@ module Evercraft
     end
 
     def self.test_factory
-      Name.new(RandomNameGenerator::flip_mode)
+      Name.new(RandomNameGenerator.flip_mode)
     end
   end
 end

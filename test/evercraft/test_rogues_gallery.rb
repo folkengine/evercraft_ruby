@@ -11,11 +11,10 @@ class TestRoguesGallery < Minitest::Test
   end
 
   def test_add_character_same_name_throws_error
-    char1 = Character.new('foo')
-    char2 = Character.new('foo')
-    gallery = RoguesGallery.new('My rogues gallery')
+    rogues = [Character.new('foo'), Character.new('foo')]
+    gallery = RoguesGallery.new('Another rogues gallery')
     assert_raises(CharacterStateException) do
-      gallery.add([char1, char2])
+      gallery.add(rogues)
     end
   end
 end

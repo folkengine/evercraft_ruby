@@ -15,8 +15,9 @@ module Evercraft
     private
 
     def add_individual(rogue)
-      raise CharacterStateException.new('Duplicate Character name error') if @rogues.has_key?(rogue.character_name)
-      @rogues[rogue.character_name] = rogue
+      character_name = rogue.character_name
+      raise CharacterStateException.new('Duplicate Character name error') if @rogues.key?(character_name)
+      @rogues[character_name] = rogue
     end
   end
 end

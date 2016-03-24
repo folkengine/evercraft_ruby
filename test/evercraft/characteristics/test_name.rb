@@ -3,7 +3,6 @@ require 'psych'
 
 class TestName < Minitest::Test
   include Evercraft
-  
   def test__new
     assert_instance_of(Name, Name.new('good'))
     assert_instance_of(Name, Name.new('good-name'))
