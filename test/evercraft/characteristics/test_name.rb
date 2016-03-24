@@ -16,24 +16,18 @@ class TestName < Minitest::Test
 
   def test_name__bad_chars__invalid
     assert_raises(CharacterStateException) do
-      lother = Name.new('Lorthar!$$')
-      puts lother.valid?
-      lother
+      Name.new('Lorthar!$$')
     end
   end
 
   def test_name__too_many_chars_invalid
     assert_raises(CharacterStateException) do
-      lother = Name.new('1234567890123')
-      puts lother.valid?
-      lother
+      Name.new('1234567890123')
     end
   end
 
   def test_to_s
     good = Name.new('good')
     assert_equal('good', good.to_s)
-    puts good.inspect
-    puts Psych.dump(good)
   end
 end
