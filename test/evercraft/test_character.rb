@@ -1,4 +1,3 @@
-require 'evercraft'
 require_relative '../test_helper'
 
 class TestCharacter < Minitest::Test

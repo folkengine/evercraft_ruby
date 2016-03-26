@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'colorize'
+gem 'ruby-enum'
 gem 'hanami-validations'
 gem 'pry'
 gem 'random_name_generator'

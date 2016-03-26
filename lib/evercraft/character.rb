@@ -10,5 +10,10 @@ module Evercraft
     def initialize(character_name = Evercraft::Name.test_factory)
       @character_name = Evercraft::Name.new(character_name).to_s
     end
+
+    def alignment(alignment = '')
+      @alignment = alignment unless alignment.empty?
+      @alignment
+    end
   end
 end

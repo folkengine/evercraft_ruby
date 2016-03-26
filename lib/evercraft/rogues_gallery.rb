@@ -1,23 +1,24 @@
 module Evercraft
   class RoguesGallery
-    attr_reader :description
+    include Yamlable
 
-    def initialize(description)
-      @description = description
-      @rogues = {}
+    attr_reader :title
+
+    def initialize(title)
+      @title = title
+      @rogues = Hashed.new(:character_name)
     end
 
-    def add(new_rogues)
-      Array(new_rogues).each { |rogue| add_individual(rogue) }
+    def store(new_rogues)
+      Array(new_rogues).each do |rogue|
+        raise CharacterStateException.new('Duplicate Character name error') if @rogues.key?(rogue.character_name)
+        @rogues.store(rogue)
+      end
       self
     end
 
-    private
-
-    def add_individual(rogue)
-      character_name = rogue.character_name
-      raise CharacterStateException.new('Duplicate Character name error') if @rogues.key?(character_name)
-      @rogues[character_name] = rogue
+    def self.test_factory
+      RoguesGallery.new("#{RandomNameGenerator::GOBLIN}s")
     end
   end
 end

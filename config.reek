@@ -12,3 +12,7 @@ TooManyStatements:
   exclude:
   - initialize
   max_statements: 8
+
+# https://github.com/troessner/reek/blob/master/docs/Utility-Function.md
+UtilityFunction:
+  enabled: false
