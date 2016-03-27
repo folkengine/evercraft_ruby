@@ -24,6 +24,17 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Dependencies
+
+* [RandomNameGenerator](https://github.com/folkengine/random_name_generator)
+
+Dev
+
+* [Minitest](https://github.com/seattlerb/minitest)
+* [Guard-Minitest](https://github.com/guard/guard-minitest)
+* [Reek](https://github.com/troessner/reek)
+* [Rubocop](https://github.com/bbatsov/rubocop)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

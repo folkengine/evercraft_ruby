@@ -5,15 +5,12 @@ module Evercraft
   class Character
     include Yamlable
 
-    attr_reader :character_name
+    attr_reader :alignment, :character_name
 
-    def initialize(character_name = Evercraft::Name.test_factory)
+    def initialize(character_name: Evercraft::Name.test_factory,
+                   alignment: Evercraft::Alignment::NEUTRAL)
       @character_name = Evercraft::Name.new(character_name).to_s
-    end
-
-    def alignment(alignment = '')
-      @alignment = alignment unless alignment.empty?
-      @alignment
+      @alignment = alignment
     end
   end
 end

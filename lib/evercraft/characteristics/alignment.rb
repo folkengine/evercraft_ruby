@@ -3,9 +3,7 @@ require 'ruby-enum'
 # http://easydamus.com/alignmentreal.html
 module Evercraft
   class Alignment
-    # Lawful good	Neutral good	Chaotic good
-    # Lawful neutral	(True) neutral	Chaotic neutral
-    # Lawful evil	Neutral evil	Chaotic evil
+    include Ruby::Enum
 
     define :GOOD, 'good'
     define :NEUTRAL, 'neutral'

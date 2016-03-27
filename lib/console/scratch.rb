@@ -5,8 +5,8 @@ Pry::Commands.create_command 'scratch' do
 
   def process
     @rogues_gallery = Evercraft::RoguesGallery.test_factory
-    greenleaf = Evercraft::Character.new('Greenleaf')
-    foobar = Evercraft::Character.new('Foobar')
+    greenleaf = Evercraft::Character.new(character_name: 'Greenleaf')
+    foobar = Evercraft::Character.new(character_name: 'Foobar')
     @rogues_gallery.store(greenleaf)
     @rogues_gallery.store(foobar)
 

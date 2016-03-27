@@ -5,14 +5,14 @@ class TestCharacter < Minitest::Test
 
   def test_character_name
     myname = 'Foobarian'
-    character = Character.new(myname)
+    character = Character.new(character_name: myname)
     assert_equal(myname, character.character_name)
   end
 
   def test_invalid_character_name_throws_exception
     assert_raises(CharacterStateException) do
       myname = 'Lorthar!$$'
-      Character.new(myname)
+      Character.new(character_name: myname)
     end
   end
 end

@@ -6,7 +6,7 @@ module Evercraft
 
     def initialize(title)
       @title = title
-      @rogues = Hashed.new(:character_name)
+      @rogues = Harshed.new(:character_name)
     end
 
     def store(new_rogues)
@@ -18,7 +18,8 @@ module Evercraft
     end
 
     def self.test_factory
-      RoguesGallery.new("#{RandomNameGenerator::GOBLIN}s")
+      gallery_name = RandomNameGenerator.new(RandomNameGenerator::GOBLIN).compose + 's'
+      RoguesGallery.new(gallery_name)
     end
   end
 end

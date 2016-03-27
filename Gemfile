@@ -4,10 +4,10 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'colorize'
-gem 'ruby-enum'
 gem 'hanami-validations'
 gem 'pry'
 gem 'random_name_generator'
+gem 'ruby-enum'
 
 group :development do
   gem 'minitest'
@@ -17,4 +17,5 @@ group :development do
   gem 'guard-minitest'
   gem 'reek'
   gem 'rubocop'
+  gem 'faker'
 end
