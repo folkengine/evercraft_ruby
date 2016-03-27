@@ -6,11 +6,12 @@ class Harshed
   include Yamlable
 
   def initialize(key_to_map, items = [],
-                 storage_base: File.join(File.dirname(__FILE__), '..', '..', '..', 'data'),
+                 storage_base: Harshed.default_base_folder,
                  storage_folder: '')
     @key_to_map = key_to_map
     @hash = {}
-    @storage_location = File.join(storage_base, storage_folder)
+    @storage_folder = storage_folder
+    @storage_base = storage_base
     store(items)
   end
 
@@ -28,14 +29,19 @@ class Harshed
     @hash[item.send(@key_to_map)] = item
   end
 
+  def valid_type?(item)
+    @hash.values.last.class == item.class
+  end
+
   def validate_type(item)
-    unless @hash.empty?
-      last_class = @hash.values.last.class
-      item_class = item.class
-      if last_class != item_class
-        raise TypeError.new("Harshed Object class types (#{last_class}/#{item_class}) must be the same.")
-      end
+    return if @hash.empty?
+    unless valid_type?(item)
+      raise TypeError.new("Harshed Object class types (#{last_class}/#{item_class}) must be the same.")
     end
+  end
+
+  def to_a
+    @hash.values
   end
 
   def key?(key)
@@ -65,10 +71,18 @@ class Harshed
   end
 
   def folder_path
-    File.join(@storage_location, @hash.values.first.class.to_s)
+    if @storage_folder.empty?
+      File.join(@storage_base, @hash.values.first.class.to_s)
+    else
+      File.join(@storage_base, @storage_folder)
+    end
   end
 
   def filename(key)
     File.join(folder_path, "#{key}.yml")
+  end
+
+  def self.default_base_folder
+    File.join(File.dirname(__FILE__), '..', '..', '..', 'data')
   end
 end

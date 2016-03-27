@@ -21,11 +21,11 @@ module Evercraft
 
     def initialize(name)
       @name = name.to_s
-      raise CharacterStateException.new('Invalid Name') unless valid?
+      raise CharacterStateException.new("Invalid Name: #{name}") unless valid?
     end
 
     # http://www.rubydoc.info/gems/hanami-validations#Format
-    attribute :name, type: String, size: 1..12, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
+    attribute :name, type: String, size: 1..24, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
 
     attr_reader :name
 
@@ -34,7 +34,7 @@ module Evercraft
     end
 
     def self.test_factory
-      Name.new(RandomNameGenerator.flip_mode)
+      Name.new(RandomNameGenerator.flip_mode.compose)
     end
   end
 end

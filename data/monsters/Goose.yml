@@ -1,0 +1,3 @@
+--- !ruby/object:Evercraft::Character
+character_name: Goose
+alignment: neutral

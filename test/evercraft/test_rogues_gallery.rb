@@ -16,4 +16,24 @@ class TestRoguesGallery < Minitest::Test
       gallery.store(rogues)
     end
   end
+
+  def test_store_to_disk
+    gallery = RoguesGallery.test_factory
+    char1 = Character.test_factory
+    char2 = Character.test_factory
+    gallery.store(char1)
+    gallery.store(char2)
+    gallery.store_to_disk
+  end
+
+  def test_retreive_from_disk
+    gallery = RoguesGallery.monsters
+    assert_equal(2, gallery.to_a.length)
+  end
+
+  def test_galleries
+    Evercraft::RoguesGallery.galleries.each do |gallery|
+      # puts gallery.to_yaml
+    end
+  end
 end

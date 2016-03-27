@@ -12,5 +12,9 @@ module Evercraft
       @character_name = Evercraft::Name.new(character_name).to_s
       @alignment = alignment
     end
+
+    def self.test_factory
+      Character.new(alignment: Evercraft::Alignment.values.sample)
+    end
   end
 end

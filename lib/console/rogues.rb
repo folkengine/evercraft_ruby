@@ -4,6 +4,7 @@ Pry::Commands.create_command 'rogues' do
   description 'Manages Rogues Galleries for EverCraft'
 
   def options(opt)
+    opt.on :l, :list, 'Lists the existing Galleries'
     opt.on :n, :new, 'Creates a new Rogues Gallery'
     opt.on :o, :open, 'Opens up an existing Roques Gallery'
   end
