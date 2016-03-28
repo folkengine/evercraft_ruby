@@ -19,13 +19,15 @@ module Evercraft
   class Name
     include Hanami::Validations
 
+    MAX_NAME_LENGTH = 64
+
     def initialize(name)
       @name = name.to_s
       raise CharacterStateException.new("Invalid Name: #{name}") unless valid?
     end
 
     # http://www.rubydoc.info/gems/hanami-validations#Format
-    attribute :name, type: String, size: 1..24, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
+    attribute :name, type: String, size: 1..MAX_NAME_LENGTH, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
 
     attr_reader :name
 

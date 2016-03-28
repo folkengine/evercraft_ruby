@@ -22,7 +22,7 @@ class TestName < Minitest::Test
 
   def test_name__too_many_chars_invalid
     assert_raises(CharacterStateException) do
-      Name.new('1234567890123')
+      Name.new((0...66).map { ('a'..'z').to_a[rand(26)] }.join)
     end
   end
 

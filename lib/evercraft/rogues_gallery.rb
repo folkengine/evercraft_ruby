@@ -4,7 +4,7 @@ module Evercraft
   class RoguesGallery
     include Yamlable
 
-    attr_reader :title
+    attr_reader :title, :rogues
 
     def initialize(title, storage_base: RoguesGallery.default_storage_base)
       @title = title.to_s

@@ -24,6 +24,8 @@ class TestRoguesGallery < Minitest::Test
     gallery.store(char1)
     gallery.store(char2)
     gallery.store_to_disk
+    assert_equal(gallery.to_a.length, Pathname.new(gallery.rogues.folder_path).children.length)
+    gallery.rm_r
   end
 
   def test_retreive_from_disk
