@@ -2,11 +2,10 @@ module Evercraft
   class HitPoints
     include Yamlable
 
-    attr_reader :score, :damage
+    attr_reader :score
 
-    def initialize(score)
+    def initialize(score = 5)
       @score = score.to_int
-      @damage = 0
     end
 
     def alive?
