@@ -8,6 +8,7 @@ gem 'hanami-validations'
 gem 'pry'
 gem 'random_name_generator'
 gem 'ruby-enum'
+gem 'logging', '~> 2.1'
 
 group :development do
   gem 'minitest'

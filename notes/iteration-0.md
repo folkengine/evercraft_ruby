@@ -1,5 +1,11 @@
 ## Iteration 0 - Workspace
 
+Dimensions
+
+* Logging
+* Unit tests
+* 
+
 Reek:
 
     [chris@Christophers-MacBook-Pro evercraft_ruby (master)]$ rake reek

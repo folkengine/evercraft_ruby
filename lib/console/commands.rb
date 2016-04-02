@@ -1,4 +1,5 @@
 require 'pry'
 
-require_relative 'rogues'
-require_relative 'scratch'
+require_relative 'character_cmd'
+require_relative 'rogues_cmd'
+require_relative 'scratch_cmd'
