@@ -6,6 +6,5 @@ module Evercraft
       @combatant1 = combatant1
       @combatant2 = combatant2
     end
-
   end
 end

@@ -23,13 +23,9 @@ module Evercraft
     end
 
     def damage
-      if critical?
-        return 2
-      elsif hits?
-        return 1
-      else
-        0
-      end
+      return 2 if critical?
+      return 1 if hits?
+      0
     end
   end
 end

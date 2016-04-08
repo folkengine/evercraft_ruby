@@ -17,7 +17,6 @@ require File.join(dirname, 'evercraft', 'stuff', 'character_state_exception')
 require File.join(dirname, 'evercraft', 'stuff', 'harshed')
 require File.join(dirname, 'evercraft', 'stuff', 'yamlable')
 
-
 # greenleaf = Evercraft::Character.new(character_name: 'Greenleaf')
 # foobar = Evercraft::Character.new(character_name: 'Foobar')
 #

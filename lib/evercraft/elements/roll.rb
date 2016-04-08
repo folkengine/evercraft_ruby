@@ -21,8 +21,6 @@ module Evercraft
       @result
     end
 
-    private
-
     def self.random(integer)
       1 + rand(integer)
     end

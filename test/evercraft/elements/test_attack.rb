@@ -20,6 +20,10 @@ class TestAttack < Minitest::Test
     attack = Attack.new(@attacker, @attackie, Roll.new(18))
     assert attack.hits?
     assert_equal attack.damage, 1
+
+    attack = Attack.new(@attacker, @attackie, Roll.new(10))
+    assert attack.hits?
+    assert_equal attack.damage, 1
   end
 
   def test_miss
@@ -27,7 +31,4 @@ class TestAttack < Minitest::Test
     assert !attack.hits?
     assert attack.fumble?
   end
-
-
-
 end

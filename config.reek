@@ -19,3 +19,15 @@ TooManyStatements:
 # https://github.com/troessner/reek/blob/master/docs/Utility-Function.md
 UtilityFunction:
   enabled: false
+
+# https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md
+UncommunicativeVariableName:
+    enabled: false
+
+# https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Parameter-Name.md
+UncommunicativeParameterName:
+    enabled: false
+
+# https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Method-Name.md
+UncommunicativeMethodName:
+    enabled: false
