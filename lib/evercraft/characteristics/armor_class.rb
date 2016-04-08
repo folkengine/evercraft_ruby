@@ -10,11 +10,11 @@ module Evercraft
     end
 
     def to_i
-      @score
+      @score.to_i
     end
 
     def to_int
-      @score
+      @score.to_i
     end
 
     def to_s

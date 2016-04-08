@@ -15,4 +15,17 @@ class TestCharacter < Minitest::Test
       Character.new(character_name: myname)
     end
   end
+
+  def test_equals
+    myname = 'Foobarian'
+    character1 = Character.new(character_name: myname)
+    character2 = Character.new(character_name: myname)
+    assert character1 == character2
+  end
+
+  def test_not_equals
+    character1 = Character.new(character_name: 'myname')
+    character2 = Character.new(character_name: 'my_other_name')
+    assert character1 != character2
+  end
 end

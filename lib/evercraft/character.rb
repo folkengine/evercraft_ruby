@@ -15,6 +15,14 @@ module Evercraft
       @hit_points = HitPoints.new
     end
 
+    def ==(other)
+      character_name == other.character_name
+    end
+
+    def eql?(other)
+      self == other
+    end
+
     def self.test_factory
       Character.new(alignment: Evercraft::Alignment.values.sample)
     end
