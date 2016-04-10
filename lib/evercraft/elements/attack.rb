@@ -2,12 +2,14 @@ module Evercraft
   class Attack
     include Yamlable
 
-    attr_reader :attacker, :target, :rolled
+    attr_reader :attacker, :target, :rolled, :damage
 
     def initialize(attacker, target, rolled = Roll.d20)
       @attacker = attacker
       @target = target
       @rolled = rolled
+      @damage = 0
+      process
     end
 
     def hits?
@@ -22,10 +24,11 @@ module Evercraft
       @rolled.to_i == 1
     end
 
-    def damage
-      return 2 if critical?
-      return 1 if hits?
-      0
+    private
+
+    def process
+      @damage = 1 if hits?
+      @damage = 2 if critical?
     end
   end
 end

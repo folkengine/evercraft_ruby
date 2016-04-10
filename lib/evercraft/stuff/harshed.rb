@@ -44,6 +44,10 @@ class Harshed
     @hash.values
   end
 
+  def value(my_key)
+    @hash[my_key]
+  end
+
   def key?(key)
     @hash.key?(key)
   end

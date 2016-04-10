@@ -4,7 +4,9 @@ module Evercraft
 
     attr_reader :score
 
-    def initialize(score = 5)
+    DEFAULT = 5
+
+    def initialize(score = DEFAULT)
       @score = score.to_int
     end
 

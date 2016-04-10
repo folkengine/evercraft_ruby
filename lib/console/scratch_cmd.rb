@@ -7,8 +7,8 @@ Pry::Commands.create_command 'scratch' do
     @rogues_gallery = Evercraft::RoguesGallery.test_factory
     greenleaf = Evercraft::Character.new(character_name: 'Greenleaf')
     foobar = Evercraft::Character.new(character_name: 'Foobar')
-    @rogues_gallery.store(greenleaf)
-    @rogues_gallery.store(foobar)
+    @rogues_gallery.add(greenleaf)
+    @rogues_gallery.add(foobar)
 
     output.puts @rogues_gallery.to_yaml
     output.puts

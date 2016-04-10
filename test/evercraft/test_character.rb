@@ -28,4 +28,56 @@ class TestCharacter < Minitest::Test
     character2 = Character.new(character_name: 'my_other_name')
     assert character1 != character2
   end
+
+  def test_alignment
+    character = Character.new(alignment: Alignment::GOOD)
+    assert_equal character.alignment, Alignment::GOOD
+  end
+
+  def test_hit_points
+    character = Character.new
+    assert_equal character.hit_points.to_i, HitPoints::DEFAULT
+  end
+
+  def test_current_hit_points
+    character = Character.new
+    assert_equal character.current_hit_points, HitPoints::DEFAULT
+
+    character.take_damage(1)
+    assert_equal character.current_hit_points, HitPoints::DEFAULT - 1
+
+    character.take_damage(6)
+    assert_equal character.current_hit_points, HitPoints::DEFAULT - 7
+  end
+
+  def test_alive
+    character = Character.new
+    assert character.alive?
+
+    character.take_damage(1)
+    assert character.alive?
+
+    character.take_damage(0)
+    assert character.alive?
+  end
+
+  def test_dead
+    character = Character.new
+    assert !character.dead?
+
+    character.take_damage(1)
+    assert !character.dead?
+
+    character.take_damage(5)
+    assert character.dead?
+  end
+
+  def test_take_damage
+    character = Character.new
+    assert character.take_damage(1)
+    assert_equal 1, character.damage
+
+    assert !character.take_damage(5)
+    assert_equal 6, character.damage
+  end
 end

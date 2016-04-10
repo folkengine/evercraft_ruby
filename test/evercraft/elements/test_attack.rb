@@ -7,7 +7,6 @@ class TestAttack < Minitest::Test
   def setup
     @attacker = Character.new(character_name: 'attacker')
     @attackie = Character.new(character_name: 'attackie')
-    @attack = Attack.new(@attacker, @attackie)
   end
 
   def test_new
@@ -19,11 +18,20 @@ class TestAttack < Minitest::Test
   def test_hit
     attack = Attack.new(@attacker, @attackie, Roll.new(18))
     assert attack.hits?
-    assert_equal attack.damage, 1
+    assert_equal 1, attack.damage
 
     attack = Attack.new(@attacker, @attackie, Roll.new(10))
     assert attack.hits?
-    assert_equal attack.damage, 1
+    assert_equal 1, attack.damage
+  end
+
+  def test_critical
+    roll20 = Roll.new(20)
+    assert_equal roll20.to_i, 20
+    attack = Attack.new(@attacker, @attackie, roll20)
+    assert attack.hits?
+    assert attack.critical?
+    assert_equal 2, attack.damage
   end
 
   def test_miss

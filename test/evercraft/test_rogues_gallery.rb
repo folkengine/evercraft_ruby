@@ -13,7 +13,7 @@ class TestRoguesGallery < Minitest::Test
     rogues = [Character.new(character_name: 'foo'), Character.new(character_name: 'foo')]
     gallery = RoguesGallery.new('Another rogues gallery')
     assert_raises(CharacterStateException) do
-      gallery.store(rogues)
+      gallery.add(rogues)
     end
   end
 
@@ -21,8 +21,8 @@ class TestRoguesGallery < Minitest::Test
     gallery = RoguesGallery.test_factory
     char1 = Character.test_factory
     char2 = Character.test_factory
-    gallery.store(char1)
-    gallery.store(char2)
+    gallery.add(char1)
+    gallery.add(char2)
     gallery.store_to_disk
     assert_equal(gallery.to_a.length, Pathname.new(gallery.rogues.folder_path).children.length)
     gallery.rm_r

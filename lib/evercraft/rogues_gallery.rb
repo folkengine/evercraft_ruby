@@ -13,9 +13,9 @@ module Evercraft
                             storage_folder: @title)
     end
 
-    def store(new_rogues)
+    def add(new_rogues)
       Array(new_rogues).each do |rogue|
-        raise CharacterStateException.new('Duplicate Character name error') if @rogues.key?(rogue.character_name)
+        raise CharacterStateException.new('Duplicate Character name error') if include?(rogue.character_name)
         @rogues.store(rogue)
       end
       self
@@ -28,6 +28,14 @@ module Evercraft
     def retrieve_from_disk
       @rogues.retrieve_from_disk
       self
+    end
+
+    def rogue(rogue)
+      @rogues.value(rogue.to_s)
+    end
+
+    def include?(rogue)
+      @rogues.key?(rogue.to_s)
     end
 
     def rm_r
