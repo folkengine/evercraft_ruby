@@ -12,7 +12,7 @@ Pry::Commands.create_command 'scratch' do
 
     output.puts @rogues_gallery.to_yaml
     output.puts
-    attack = Evercraft::Attack.new(greenleaf, foobar).roll
+    attack = Evercraft::Attack.new(greenleaf, foobar)
     output.puts "#{greenleaf.character_name} rolls #{attack.rolled.to_i} hits #{attack.hits?} #{greenleaf.character_name}"
   end
 end

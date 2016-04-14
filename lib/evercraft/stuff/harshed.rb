@@ -44,12 +44,16 @@ class Harshed
     @hash.values
   end
 
+  def key?(key)
+    @hash.key?(key)
+  end
+
   def value(my_key)
     @hash[my_key]
   end
 
-  def key?(key)
-    @hash.key?(key)
+  def sample
+    @hash.values.sample
   end
 
   def retrieve_from_disk

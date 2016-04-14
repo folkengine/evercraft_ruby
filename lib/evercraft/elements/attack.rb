@@ -13,7 +13,7 @@ module Evercraft
     end
 
     def hits?
-      @rolled.to_i >= @target.armor_class.to_i
+      roll_modified >= @target.armor_class.to_i
     end
 
     def critical?
@@ -24,11 +24,32 @@ module Evercraft
       @rolled.to_i == 1
     end
 
+    def roll_modified
+      @rolled.to_i + attacker.attributes.strength.modifier
+    end
+
+    def standard_damage
+      return 1 if attacker.attributes.strength.modifier < 0
+      1 + attacker.attributes.strength.modifier
+    end
+
+    def critical_damage
+      return 2 if attacker.attributes.strength.modifier < 0
+      2 + (attacker.attributes.strength.modifier * 2)
+    end
+
+    def to_s
+      return "#{attacker.character_name} critically hits #{target.character_name} for #{damage} hit points." if critical?
+      return "#{attacker.character_name} hits #{target.character_name} for #{damage} hit points." if hits?
+      return "#{attacker.character_name} fumbles attacking #{target.character_name}." if fumble?
+      "#{attacker.character_name} misses #{target.character_name}"
+    end
+
     private
 
     def process
-      @damage = 1 if hits?
-      @damage = 2 if critical?
+      @damage = standard_damage if hits?
+      @damage = critical_damage if critical?
     end
   end
 end

@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require 'psych'
 
-class TestName < Minitest::Test
+class TestArmorClass < Minitest::Test
   include Evercraft
   def test__new
     assert_instance_of(Name, Name.new('good'))

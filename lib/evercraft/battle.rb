@@ -4,11 +4,10 @@ module Evercraft
   class Battle
     include Yamlable
 
-    attr_reader :attacks, :name
+    attr_reader :attacks, :combatants
 
-    def initialize(name: RandomNameGenerator.new(RandomNameGenerator::GOBLIN).compose)
-      @name = name
-      @combatants = RoguesGallery.new("Battle of #{name}")
+    def initialize(combatants = RoguesGallery.new("Battle of #{RandomNameGenerator.flip_mode.compose}"))
+      @combatants = combatants
       @attacks = []
     end
 
@@ -17,12 +16,37 @@ module Evercraft
       process_attack(attack)
     end
 
+    def alive
+      @combatants.to_a.find_all(&:alive?)
+    end
+
     def alive?(target)
-      @combatants.rogue(target).alive?
+      @combatants.rogue(target.character_name).alive?
     end
 
     def dead?(target)
       !alive?(target)
+    end
+
+    def include?(rogue)
+      @combatants.include?(rogue)
+    end
+
+    def number_alive
+      return -1 unless started?
+      alive.count
+    end
+
+    def started?
+      @attacks.empty?
+    end
+
+    def random_opponent(character)
+      alive.find_all { |i| i.character_name != character.character_name }.sample
+    end
+
+    def title
+      @combatants.title
     end
 
     private
@@ -34,8 +58,9 @@ module Evercraft
 
     def process_attack(attack)
       @attacks << attack
+      @combatants.rogue(attack.attacker.character_name).gain_experience(10) if attack.hits?
       @combatants.rogue(attack.target.character_name).take_damage(attack.damage)
-      alive?(attack.target) ? [] : @combatants.rogue(attack.target)
+      alive?(attack.target) ? nil : @combatants.rogue(attack.target)
     end
   end
 end

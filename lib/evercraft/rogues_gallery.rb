@@ -15,7 +15,7 @@ module Evercraft
 
     def add(new_rogues)
       Array(new_rogues).each do |rogue|
-        raise CharacterStateException.new('Duplicate Character name error') if include?(rogue.character_name)
+        raise CharacterStateException.new('Duplicate Character name error') if include?(rogue)
         @rogues.store(rogue)
       end
       self
@@ -35,7 +35,11 @@ module Evercraft
     end
 
     def include?(rogue)
-      @rogues.key?(rogue.to_s)
+      @rogues.key?(rogue.character_name)
+    end
+
+    def sample
+      @rogues.sample
     end
 
     def rm_r
@@ -47,7 +51,7 @@ module Evercraft
     end
 
     def self.test_factory
-      gallery_name = RandomNameGenerator.new(RandomNameGenerator::GOBLIN).compose + 's'
+      gallery_name = RandomNameGenerator.flip_mode.compose + 's'
       RoguesGallery.new(gallery_name)
     end
 
