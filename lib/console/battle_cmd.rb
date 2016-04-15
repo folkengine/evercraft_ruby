@@ -4,12 +4,10 @@ Pry::Commands.create_command 'battle' do
   description 'Battle related commands'
 
   def process
-    rogues = Evercraft::RoguesGallery.test_factory
-    4.times { rogues.add(Evercraft::Character.test_factory) }
-
-    # output.puts rogues.to_yaml
+    rogues = Evercraft::RoguesGallery.test_factory(4)
 
     @battle = Evercraft::Battle.new(rogues)
+    set_prompt($current_rogues_gallery.title)
 
     output.puts @battle.to_yaml
 
@@ -26,7 +24,6 @@ Pry::Commands.create_command 'battle' do
     output.puts attack.to_s
     result = @battle.attack(attack)
     output.puts "#{result.character_name} killed." unless result.nil?
-    # output.puts @battle.scoreboard
 
     @battle.alive.each do |c|
       puts ">>> #{c}"

@@ -6,7 +6,7 @@ module Evercraft
 
     attr_reader :title, :rogues
 
-    def initialize(title, storage_base: RoguesGallery.default_storage_base)
+    def initialize(title = RandomNameGenerator.flip_mode.compose, storage_base: RoguesGallery.default_storage_base)
       @title = title.to_s
       @rogues = Harshed.new(:character_name,
                             storage_base: storage_base,
@@ -50,9 +50,10 @@ module Evercraft
       @rogues.to_a
     end
 
-    def self.test_factory
-      gallery_name = RandomNameGenerator.flip_mode.compose + 's'
-      RoguesGallery.new(gallery_name)
+    def self.test_factory(how_many_rogues = 0)
+      rogues_gallery = RoguesGallery.new(RandomNameGenerator.flip_mode.compose + 's')
+      how_many_rogues.times { rogues_gallery.add(Evercraft::Character.test_factory)  }
+      rogues_gallery
     end
 
     def self.default_storage_base

@@ -4,9 +4,12 @@ module Evercraft
   class Battle
     include Yamlable
 
-    attr_reader :attacks, :combatants
+    attr_reader :title, :attacks, :combatants
 
-    def initialize(combatants = RoguesGallery.new("Battle of #{RandomNameGenerator.flip_mode.compose}"))
+    def initialize(
+        title: "Battle of #{RandomNameGenerator.flip_mode.compose}",
+        combatants: RoguesGallery.new(RandomNameGenerator.flip_mode.compose))
+      @title = title
       @combatants = combatants
       @attacks = []
     end

@@ -5,7 +5,7 @@ module Evercraft
   class Character
     include Yamlable
 
-    attr_reader :character_name, :alignment, :attributes, :armor_class, :hit_points, :damage
+    attr_reader :character_name, :alignment, :attributes, :armor_class, :damage
 
     def initialize(character_name: Evercraft::Name.test_factory,
                    alignment: Evercraft::Alignment::NEUTRAL,
@@ -18,7 +18,7 @@ module Evercraft
       @alignment = alignment.freeze
       @attributes = attributes
       @armor_class = armor_class
-      @hit_points = HitPoints.new(hit_points)
+      @hit_points_base = HitPoints.new(hit_points)
       @damage = damage
       @experience = experience
     end
@@ -36,12 +36,26 @@ module Evercraft
       alive?
     end
 
+    def armor_class_modified
+      @armor_class.to_i + @attributes.dexterity.modifier
+    end
+
+    def hit_points
+      cumulative_hp = @hit_points_base.to_i + @attributes.constitution.modifier
+      return 1 if cumulative_hp < 1
+      @hit_points_base.to_i + @attributes.constitution.modifier
+    end
+
     def current_hit_points
-      @hit_points.to_i - @damage
+      @hit_points_base.to_i - @damage
+    end
+
+    def hit_points_base
+      @hit_points_base
     end
 
     def alive?
-      (@hit_points.to_i - @damage) > 0
+      (@hit_points_base.to_i - @damage) > 0
     end
 
     def dead?

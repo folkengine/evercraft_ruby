@@ -7,9 +7,6 @@ require 'pry'
 require 'console/commands'
 require 'evercraft'
 
-Pry.config.prompt_name = 'EverCraft'
-# rubocop:disable Lint/UnusedBlockArgument
-Pry.config.prompt = proc { |target_self, nest_level, pry| "#{pry.config.prompt_name} v.#{Evercraft::VERSION}> " }
 
 puts
 File.open(File.join(File.dirname(__FILE__), 'evercraft.txt')) do |file_handle|

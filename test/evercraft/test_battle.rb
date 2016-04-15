@@ -34,7 +34,6 @@ class TestBattle < Minitest::Test
     attackie = Character.new
     battle.attack(Attack.new(attacker, attackie, Roll.new(18)))
     assert_equal battle.alive.length, 2
-    puts "alive: #{battle.alive}"
   end
 
   def test_include
@@ -50,9 +49,9 @@ class TestBattle < Minitest::Test
   end
 
   def test_drive
-    rogues = Evercraft::RoguesGallery.new("The Battle of #{RandomNameGenerator.flip_mode.compose}")
+    rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
     4.times { rogues.add(Evercraft::Character.test_factory) }
-    my_battle = Evercraft::Battle.new(rogues)
+    my_battle = Evercraft::Battle.new(combatants: rogues)
 
     puts my_battle.title
 

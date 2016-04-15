@@ -8,5 +8,11 @@ module Evercraft
     define :GOOD, 'good'
     define :NEUTRAL, 'neutral'
     define :EVIL, 'evil'
+
+    def self.parse(alignment)
+      return :GOOD if alignment.strip.casecmp('good')
+      return :EVIL if alignment.strip.casecmp('evil')
+      :NEUTRAL
+    end
   end
 end

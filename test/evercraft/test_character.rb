@@ -39,6 +39,16 @@ class TestCharacter < Minitest::Test
     assert_equal character.hit_points.to_i, HitPoints::DEFAULT
   end
 
+  def test_hit_points_high_constitution
+    siegfried = Character.new(character_name: 'Siegfried', attributes: Attributes.new(constitution: 20))
+    assert_equal siegfried.hit_points, siegfried.hit_points_base.to_i + siegfried.attributes.constitution.modifier
+  end
+
+  def test_hit_points_low_constitution
+    mouse = Character.new(character_name: 'Mouse', attributes: Attributes.new(constitution: 1))
+    assert_equal mouse.hit_points, 1
+  end
+
   def test_current_hit_points
     character = Character.new
     assert_equal character.current_hit_points, HitPoints::DEFAULT
@@ -59,6 +69,11 @@ class TestCharacter < Minitest::Test
 
     character.take_damage(0)
     assert character.alive?
+  end
+
+  def test_armor_modified
+    achilles = Character.new(character_name: 'Achilles', attributes: Attributes.new(dexterity: 20))
+    assert_equal achilles.armor_class_modified, achilles.armor_class.to_i + achilles.attributes.dexterity.modifier
   end
 
   def test_dead

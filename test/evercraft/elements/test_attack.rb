@@ -60,7 +60,7 @@ class TestAttack < Minitest::Test
     assert_equal 1 + hercules.attributes.strength.modifier, attack.damage
   end
 
-  def test_strength_mod__critical_damage
+  def test_strength_mod_critical_damage
     attack_roll = Roll.new(20)
     hercules = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 18))
     attackie = Character.new(character_name: 'Attackie')
@@ -71,13 +71,47 @@ class TestAttack < Minitest::Test
     assert_equal expected_damage, attack.damage
   end
 
+  def test_strength_mod_critical_weak
+    attack_roll = Roll.new(20)
+    abbot = Character.new(character_name: 'Abbot', attributes: Attributes.new(strength: 1))
+    attackie = Character.new(character_name: 'Attackie')
+    attack = Attack.new(abbot, attackie, attack_roll)
+
+    expected_damage = 1
+    assert_equal expected_damage, attack.critical_damage
+    assert_equal expected_damage, attack.damage
+  end
+
   def test_strength_mod_attack_roll_miss
     attack_roll = Roll.new(12)
-    hercules = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 1))
+    abbot = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 1))
     attackie = Character.new(character_name: 'Attackie')
-    attack = Attack.new(hercules, attackie, attack_roll)
+    attack = Attack.new(abbot, attackie, attack_roll)
+
+    assert_equal attack.roll_modified, abbot.attributes.strength.modifier + attack_roll.to_i
+    assert !attack.hits?
+  end
+
+  def test_dex_mod_armor_high_roll
+    attack_roll = Roll.new(10)
+    hercules = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 18))
+    achilles = Character.new(character_name: 'Achilles', attributes: Attributes.new(dexterity: 20))
+    attack = Attack.new(hercules, achilles, attack_roll)
 
     assert_equal attack.roll_modified, hercules.attributes.strength.modifier + attack_roll.to_i
+    assert_equal achilles.armor_class_modified, achilles.attributes.dexterity.modifier.to_i + achilles.armor_class.to_i
     assert !attack.hits?
+  end
+
+  def test_dex_mod_armor_high_critical
+    attack_roll = Roll.new(20)
+    abbot = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 1))
+    achilles = Character.new(character_name: 'Achilles', attributes: Attributes.new(dexterity: 20))
+    attack = Attack.new(abbot, achilles, attack_roll)
+
+    assert_equal attack.roll_modified, abbot.attributes.strength.modifier + attack_roll.to_i
+    assert_equal achilles.armor_class_modified, achilles.attributes.dexterity.modifier.to_i + achilles.armor_class.to_i
+    assert attack.hits?
+    assert attack.critical?
   end
 end

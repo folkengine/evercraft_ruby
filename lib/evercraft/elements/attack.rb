@@ -13,7 +13,8 @@ module Evercraft
     end
 
     def hits?
-      roll_modified >= @target.armor_class.to_i
+      return true if @rolled.to_i == 20
+      roll_modified >= target.armor_class_modified
     end
 
     def critical?
@@ -34,8 +35,9 @@ module Evercraft
     end
 
     def critical_damage
-      return 2 if attacker.attributes.strength.modifier < 0
-      2 + (attacker.attributes.strength.modifier * 2)
+      crit = 2 + (attacker.attributes.strength.modifier * 2)
+      return 1 if crit < 1
+      crit
     end
 
     def to_s
