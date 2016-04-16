@@ -1,3 +1,4 @@
+require 'colorize'
 require_relative '../evercraft'
 
 $current_character = nil
@@ -6,26 +7,33 @@ Pry::Commands.create_command 'character' do
   description 'Character related commands'
 
   def options(opt)
+    opt.on :a, :add, 'Adds current Character to current Rogues Gallery'
     opt.on :c, :current, 'Full current Character information'
     opt.on :n, :new, 'Creates a new Character'
     opt.on :r, :random, 'Creates a random new Character'
   end
 
   def process
-    if opts.new?
-      $current_character = input_character
-      output.puts $current_character
-    elsif opts.random?
-      $current_character = Evercraft::Character.new.to_yaml
-      output.puts $current_character
-    elsif opts.current?
-      output.puts $current_character.nil? ? 'No current Character' : $current_character.to_yaml
+    begin
+      if opts.add?
+        $current_rogues_gallery.add($current_character) if !$current_character.nil?
+      elsif opts.new?
+        $current_character = input_character
+        output.puts $current_character
+      elsif opts.random?
+        $current_character = Evercraft::Character.test_factory
+        output.puts $current_character.to_yaml
+      elsif opts.current?
+        output.puts $current_character.nil? ? 'No current Character' : $current_character.to_yaml
+      end
+    rescue CharacterStateException
+      output.puts 'ERROR: Invalid Character Name'.colorize(:red).bold
     end
   end
 
   def input_character
     output.print "name: "
-    character_name = gets.chomp
+    character_name = Evercraft::Name.new(gets.chomp)
 
     output.print "alignment (GOOD|NEUTRAL|EVIL): "
     alignment = Evercraft::Alignment.parse(gets.chomp)

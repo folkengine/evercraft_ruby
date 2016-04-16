@@ -114,4 +114,11 @@ class TestAttack < Minitest::Test
     assert attack.hits?
     assert attack.critical?
   end
+
+  def test_min
+    tom = Character.new(character_name: 'Tom', attributes: Attributes.new(strength: 1, constitution: 1))
+    jerry = Character.new(character_name: 'Jerry', attributes: Attributes.new(strength: 1, constitution: 1))
+    attack = Attack.new(tom, jerry, Roll.new(20))
+    assert_equal attack.damage, 1
+  end
 end

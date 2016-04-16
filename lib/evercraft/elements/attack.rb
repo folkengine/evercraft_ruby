@@ -12,6 +12,11 @@ module Evercraft
       process
     end
 
+    def lock
+      @attacker = attacker.clone.freeze
+      @target = target.clone.freeze
+    end
+
     def hits?
       return true if @rolled.to_i == 20
       roll_modified >= target.armor_class_modified

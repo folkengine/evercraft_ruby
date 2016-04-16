@@ -1,23 +1,31 @@
 module Evercraft
   class Replay
 
-    attr_reader :battle, :pointer
+    attr_reader :battle, :replay, :pointer
 
     def initialize(battle)
       @battle = battle
       init_replay(@battle)
     end
 
-    private
-
     def step_forward
-      attack = @attacks[@pointer]
-      @replay.attack(attack)
+      return nil if @pointer >= @attacks.size
+      current_attack = @attacks[@pointer]
+      @replay.attack(current_attack)
       @pointer += 1
+      current_attack
     end
 
+    def reset
+      @pointer = 0
+      self
+    end
+
+    private
+
     def init_replay(battle)
-      @replay = Evercraft::Battle.new(@battle.combatants)
+      battle.reset
+      @replay = Evercraft::Battle.new(combatants: battle.combatants)
       @attacks = battle.attacks
       @pointer = 0
     end

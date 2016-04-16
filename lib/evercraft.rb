@@ -16,6 +16,7 @@ require File.join(dirname, 'evercraft', 'elements', 'attribute_score')
 require File.join(dirname, 'evercraft', 'elements', 'roll')
 require File.join(dirname, 'evercraft', 'stuff', 'character_state_exception')
 require File.join(dirname, 'evercraft', 'stuff', 'harshed')
+require File.join(dirname, 'evercraft', 'stuff', 'replay')
 require File.join(dirname, 'evercraft', 'stuff', 'yamlable')
 
 # greenleaf = Evercraft::Character.new(character_name: 'Greenleaf')

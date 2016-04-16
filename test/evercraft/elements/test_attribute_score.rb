@@ -3,10 +3,6 @@ require_relative '../../test_helper'
 class TestAttributeScore < Minitest::Test
   include Evercraft
 
-  def test_modifiers
-    assert_equal 20, AttributeScore::MODIFIERS.length
-  end
-
   def test_negative_5
     assert_equal AttributeScore.new(1).modifier, -5
   end
@@ -58,5 +54,9 @@ class TestAttributeScore < Minitest::Test
 
   def test_positive_5
     assert_equal AttributeScore.new(20).modifier, 5
+  end
+
+  def test_positive_max
+    assert_equal AttributeScore.new(200).modifier, 10
   end
 end

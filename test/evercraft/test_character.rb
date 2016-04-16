@@ -95,4 +95,28 @@ class TestCharacter < Minitest::Test
     assert !character.take_damage(5)
     assert_equal 6, character.damage
   end
+
+  def test_level
+    assert_equal Character.new(experience: 50).level, 1
+    assert_equal Character.new(experience: 1000).level, 2
+    assert_equal Character.new(experience: 1030).level, 2
+    assert_equal Character.new(experience: 2030).level, 3
+  end
+
+  def test_level_effect_on_hitpoints
+    assert_equal 1, Character.new(experience: 3, attributes: Attributes.new(constitution: 1)).hit_points
+    assert_equal 7, Character.new(experience: 6003, attributes: Attributes.new(constitution: 1)).hit_points
+    assert_equal 5, Character.new(experience: 3, attributes: Attributes.new(constitution: 10)).hit_points
+    assert_equal 10, Character.new(experience: 1043, attributes: Attributes.new(constitution: 10)).hit_points
+    assert_equal 18, Character.new(experience: 1043, attributes: Attributes.new(constitution: 19)).hit_points
+    assert_equal 20, Character.new(experience: 1043, attributes: Attributes.new(constitution: 20)).hit_points
+  end
+
+  def test_level_effect_on_hitpoints_hercules
+    attributes = Attributes.new(strength: 40, dexterity: 15, constitution: 40)
+    hercules = Character.new(experience: 10000, attributes: attributes)
+    assert_equal hercules.hit_points_per_level, 15
+    assert_equal hercules.level, 11
+    assert_equal 11 * 15, hercules.hit_points
+  end
 end

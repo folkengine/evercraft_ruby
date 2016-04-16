@@ -52,6 +52,28 @@ module Evercraft
       @combatants.title
     end
 
+    def reset
+      @combatants.to_a.each { |c| c.reset }
+    end
+
+    def playout
+      while(alive.length > 1)
+        attacker = alive.sample
+        opponent = random_opponent(attacker)
+        attack = Evercraft::Attack.new(attacker, opponent)
+        result = attack(attack)
+      end
+      self
+    end
+
+    def self.test_factory(played_out = false)
+      rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
+      2.times { rogues.add(Evercraft::Character.test_factory) }
+      my_battle = Evercraft::Battle.new(combatants: rogues)
+      return my_battle unless played_out
+      my_battle.playout
+    end
+
     private
 
     def process_combatants(attack)
@@ -63,7 +85,8 @@ module Evercraft
       @attacks << attack
       @combatants.rogue(attack.attacker.character_name).gain_experience(10) if attack.hits?
       @combatants.rogue(attack.target.character_name).take_damage(attack.damage)
-      alive?(attack.target) ? nil : @combatants.rogue(attack.target)
+      attack.lock
+      alive?(attack.target) ? nil : @combatants.rogue(attack.target.character_name)
     end
   end
 end

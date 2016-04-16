@@ -5,7 +5,8 @@ module Evercraft
   class Character
     include Yamlable
 
-    attr_reader :character_name, :alignment, :attributes, :armor_class, :damage
+    attr_accessor :damage, :current_experience
+    attr_reader :character_name, :alignment, :attributes, :armor_class, :damage, :experience
 
     def initialize(character_name: Evercraft::Name.test_factory,
                    alignment: Evercraft::Alignment::NEUTRAL,
@@ -21,10 +22,20 @@ module Evercraft
       @hit_points_base = HitPoints.new(hit_points)
       @damage = damage
       @experience = experience
+      @current_experience = 0
     end
 
     def gain_experience(ex)
-      @experience += ex
+      @current_experience += ex
+    end
+
+    def level_up
+      @experience = @current_experience
+    end
+
+    def reset
+      @current_experience = 0
+      @damage = 0
     end
 
     def attack(attackie)
@@ -41,21 +52,29 @@ module Evercraft
     end
 
     def hit_points
-      cumulative_hp = @hit_points_base.to_i + @attributes.constitution.modifier
-      return 1 if cumulative_hp < 1
-      @hit_points_base.to_i + @attributes.constitution.modifier
+      hit_points_per_level * level
+    end
+
+    def hit_points_per_level
+      hp_plus_mod = @hit_points_base.to_i + @attributes.constitution.modifier
+      return 1 if hp_plus_mod < 1
+      hp_plus_mod
     end
 
     def current_hit_points
-      @hit_points_base.to_i - @damage
+      hit_points - @damage
     end
 
     def hit_points_base
       @hit_points_base
     end
 
+    def level
+      (@experience / 1000).to_i + 1
+    end
+
     def alive?
-      (@hit_points_base.to_i - @damage) > 0
+      current_hit_points > 0
     end
 
     def dead?
@@ -72,7 +91,7 @@ module Evercraft
 
     def to_s
       return "#{@character_name} is dead." if dead?
-      "#{@character_name} HP: #{current_hit_points.to_i} EX: #{@experience}"
+      "#{@character_name} HP: #{current_hit_points.to_i} EX: #{@experience + @current_experience}"
     end
 
     def self.test_factory

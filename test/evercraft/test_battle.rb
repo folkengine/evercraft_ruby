@@ -48,6 +48,14 @@ class TestBattle < Minitest::Test
     battle.attack(Attack.new(attacker, attackie, Roll.new(18)))
   end
 
+  def test_min
+    battle = Battle.new
+    tom = Character.new(character_name: 'Tom', attributes: Attributes.new(strength: 1, constitution: 1))
+    jerry = Character.new(character_name: 'Jerry', attributes: Attributes.new(strength: 1, constitution: 1))
+    result = battle.attack(Attack.new(tom, jerry, Roll.new(20)))
+    assert !result.nil?
+  end
+
   def test_drive
     rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
     4.times { rogues.add(Evercraft::Character.test_factory) }
@@ -62,10 +70,8 @@ class TestBattle < Minitest::Test
       attack = Evercraft::Attack.new(attacker, opponent)
       puts attack.to_s
       result = my_battle.attack(attack)
-      puts "#{result.character_name} killed." unless result.nil?
-      # puts
-      # puts my_battle.scoreboard
-      # puts
+      puts "#{result.character_name} has been killed." unless result.nil?
+
       my_battle.alive.each do |c|
         puts ">>> #{c.to_s}"
       end
