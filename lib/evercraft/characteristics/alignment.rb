@@ -10,8 +10,8 @@ module Evercraft
     define :EVIL, 'evil'
 
     def self.parse(alignment)
-      return :GOOD if alignment.strip.casecmp('good')
-      return :EVIL if alignment.strip.casecmp('evil')
+      return Alignment.value(:GOOD) if alignment.strip.downcase.eql?('good')
+      return Alignment.value(:EVIL) if alignment.strip.downcase.eql?('evil')
       :NEUTRAL
     end
   end

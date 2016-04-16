@@ -53,7 +53,7 @@ module Evercraft
     end
 
     def reset
-      @combatants.to_a.each { |c| c.reset }
+      @combatants.reset
     end
 
     def playout

@@ -5,6 +5,7 @@ Pry::Commands.create_command 'battle' do
 
   def options(opt)
     opt.on :r, :replay, 'Instant Replay of the current Battle'
+    opt.on :R, :reset, 'Resets the Rogues values'
     opt.on :n, :new, 'Create a random Rogues Gallery to Battle'
     opt.on :s, :save, 'Save the Battle'
     opt.on :y, :yaml, 'Dump out all Objects as YAML'
@@ -13,6 +14,8 @@ Pry::Commands.create_command 'battle' do
   def process
     if opts.replay?
       replay
+    elsif opts.reset?
+      $current_battle.reset
     else
       rogues = opts.new? ? Evercraft::RoguesGallery.test_factory(4) : $current_rogues_gallery
 
@@ -66,8 +69,8 @@ Pry::Commands.create_command 'battle' do
 
       output.puts "Attack #{instant_replay.pointer}: "
 
-      s = opts.yaml? ? attack.to_yaml : attack.to_s
-      output.puts s
+      output.puts attack.to_yaml if opts.yaml?
+      output.puts attack.to_s
 
       output.puts attack.attacker
       output.puts attack.target
