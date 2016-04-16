@@ -1,0 +1,24 @@
+--- !ruby/object:Evercraft::Character
+character_name: Hercules
+alignment: :GOOD
+attributes: !ruby/object:Evercraft::Attributes
+  strength: !ruby/object:Evercraft::AttributeScore
+    value: 40
+  dexterity: !ruby/object:Evercraft::AttributeScore
+    value: 15
+  constitution: !ruby/object:Evercraft::AttributeScore
+    value: 40
+  wisdom: !ruby/object:Evercraft::AttributeScore
+    value: 8
+  intelligence: !ruby/object:Evercraft::AttributeScore
+    value: 8
+  charisma: !ruby/object:Evercraft::AttributeScore
+    value: 16
+armor_class: !ruby/object:Evercraft::ArmorClass
+  name: default
+  score: !ruby/object:Evercraft::AttributeScore
+    value: 10
+hit_points_base: !ruby/object:Evercraft::HitPoints
+  score: 5
+damage: 0
+experience: 10000
