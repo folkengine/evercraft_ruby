@@ -2,12 +2,11 @@
 
 require 'bundler/setup'
 require 'colorize'
-require 'evercraft'
 require 'pry'
 
-Pry.config.prompt_name = 'EverCraft'
-# rubocop:disable Lint/UnusedBlockArgument
-Pry.config.prompt = proc { |target_self, nest_level, pry| "#{pry.config.prompt_name} v.#{Evercraft::VERSION}> " }
+require 'console/commands'
+require 'evercraft'
+
 
 puts
 File.open(File.join(File.dirname(__FILE__), 'evercraft.txt')) do |file_handle|

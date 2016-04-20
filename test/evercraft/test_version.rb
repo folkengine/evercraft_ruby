@@ -1,7 +1,7 @@
 require 'evercraft'
 require_relative '../test_helper'
 
-class TestRandomNameGenerator < Minitest::Test
+class TestVersion < Minitest::Test
   def test_version
     refute_empty(Evercraft::VERSION)
   end

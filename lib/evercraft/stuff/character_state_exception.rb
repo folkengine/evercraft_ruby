@@ -1,0 +1,2 @@
+class CharacterStateException < Exception
+end

@@ -1,3 +1,5 @@
+# https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+
 Metrics/AbcSize:
   Enabled: true
   Max: 22
@@ -18,6 +20,14 @@ Style/Documentation:
 Style/MultilineIfThen:
   Description: 'Do not use then for multi-line if/unless.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-then'
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/StructInheritance:
+  Description: 'Checks for inheritance from Struct.new.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-extend-struct-new'
   Enabled: false
 
 Style/WordArray:
