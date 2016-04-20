@@ -16,6 +16,14 @@ module Evercraft
       current_attack
     end
 
+    def step_backward
+      return nil if @pointer == 0
+      @pointer -= 1
+      current_attack = @attacks[@pointer]
+      @replay.attack(current_attack)
+      current_attack
+    end
+
     def reset
       @pointer = 0
       self
