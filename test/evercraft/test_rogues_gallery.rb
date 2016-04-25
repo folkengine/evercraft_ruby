@@ -28,7 +28,7 @@ class TestRoguesGallery < Minitest::Test
     gallery.rm_r
   end
 
-  def test_retreive_from_disk
+  def test_retrieve_from_disk
     gallery = RoguesGallery.monsters
     assert_equal(2, gallery.to_a.length)
   end

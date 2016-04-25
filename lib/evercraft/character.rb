@@ -1,4 +1,4 @@
-require_relative 'stuff/yamlable'
+require 'yamlable'
 
 # Evercraft MMORPG API
 module Evercraft
