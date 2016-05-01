@@ -1,4 +1,6 @@
-# The EverCraft Kata (DX Style)
+# The EverCraft Kata 
+
+[![Build Status](https://travis-ci.org/folkengine/evercraft_ruby.svg?branch=master)](https://travis-ci.org/folkengine/evercraft_ruby)
 
 In this exercise, you will build out a domain model for a MMORPG called EverCraft for the company Blizzards of the Coast.  Just
 follow the requirements below, pairing and test driving your code of course, and have fun.
