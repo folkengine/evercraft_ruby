@@ -1,4 +1,5 @@
 require 'pathname'
+require 'harshed'
 
 module Evercraft
   class RoguesGallery
@@ -8,7 +9,7 @@ module Evercraft
 
     def initialize(title = RandomNameGenerator.flip_mode.compose, storage_base: RoguesGallery.default_storage_base)
       @title = title.to_s
-      @rogues = Harshed.new(:character_name,
+      @rogues = Harshed::Harsh.new(:character_name,
                             storage_base: storage_base,
                             storage_folder: @title)
     end
@@ -21,12 +22,12 @@ module Evercraft
       self
     end
 
-    def store_to_disk
-      @rogues.store_to_disk
+    def to_disk
+      @rogues.to_disk
     end
 
-    def retrieve_from_disk
-      @rogues.retrieve_from_disk
+    def from_disk
+      @rogues.from_disk
       self
     end
 
@@ -73,19 +74,19 @@ module Evercraft
     end
 
     def self.default_storage_base
-      File.join(Harshed.default_base_folder, 'galleries')
+      File.join(File.dirname(__FILE__), '..', '..', 'data', 'galleries')
     end
 
     def self.galleries
       pathnames = Pathname.new(default_storage_base).children
       pathnames.map do |pathname|
-        RoguesGallery.new(pathname.each_filename.to_a.last).retrieve_from_disk
+        RoguesGallery.new(pathname.each_filename.to_a.last).from_disk
       end
     end
 
     #
     def self.monsters
-      RoguesGallery.new(:monsters, storage_base: Harshed.default_base_folder).retrieve_from_disk
+      RoguesGallery.new(:monsters, storage_base: File.join(File.dirname(__FILE__), '..', '..', 'data')).from_disk
     end
   end
 end

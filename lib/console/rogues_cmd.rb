@@ -29,17 +29,17 @@ Pry::Commands.create_command 'rogues' do
       set_prompt($current_rogues_gallery.title)
       output.puts $current_rogues_gallery.to_s
     elsif opts.open?
-      $current_rogues_gallery.retrieve_from_disk
+      $current_rogues_gallery.from_disk
     elsif opts.save?
       $current_rogues_gallery.promote
       $current_rogues_gallery.reset
-      $current_rogues_gallery.store_to_disk
+      $current_rogues_gallery.to_disk
     end
 
     arg1 = get_arg(args)
     unless arg1.nil?
       $current_rogues_gallery = Evercraft::RoguesGallery.new(arg1)
-      $current_rogues_gallery.retrieve_from_disk
+      $current_rogues_gallery.from_disk
       output.puts $current_rogues_gallery.to_s
     end
 

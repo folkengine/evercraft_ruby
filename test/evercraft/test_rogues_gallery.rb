@@ -23,7 +23,7 @@ class TestRoguesGallery < Minitest::Test
     char2 = Character.test_factory
     gallery.add(char1)
     gallery.add(char2)
-    gallery.store_to_disk
+    gallery.to_disk
     assert_equal(gallery.to_a.length, Pathname.new(gallery.rogues.folder_path).children.length)
     gallery.rm_r
   end
