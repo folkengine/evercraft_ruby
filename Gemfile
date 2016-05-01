@@ -10,7 +10,7 @@ gem 'random_name_generator'
 gem 'ruby-enum'
 gem 'logging', '~> 2.1'
 gem 'yamlable'
-gem 'harshed'
+gem 'harshed', '~> 0.1.2'
 
 group :development do
   gem 'minitest'
