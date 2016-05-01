@@ -48,7 +48,7 @@ Pry::Commands.create_command 'battle' do
         output.puts attack.to_yaml if opts.yaml?
 
         result = $current_battle.attack(attack)
-        output.puts "#{result.character_name} has been killed." unless result.nil?
+        output.puts "#{result.first.character_name} has been killed." unless result.empty?
       end
 
       $current_battle.alive.each do |c|

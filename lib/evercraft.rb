@@ -15,12 +15,4 @@ require File.join(dirname, 'evercraft', 'elements', 'attack')
 require File.join(dirname, 'evercraft', 'elements', 'attribute_score')
 require File.join(dirname, 'evercraft', 'elements', 'roll')
 require File.join(dirname, 'evercraft', 'stuff', 'character_state_exception')
-require File.join(dirname, 'evercraft', 'stuff', 'harshed')
 require File.join(dirname, 'evercraft', 'stuff', 'replay')
-require File.join(dirname, 'evercraft', 'stuff', 'yamlable')
-
-# greenleaf = Evercraft::Character.new(character_name: 'Greenleaf')
-# foobar = Evercraft::Character.new(character_name: 'Foobar')
-#
-# attack = Evercraft::Attack.new(greenleaf, foobar).roll
-# puts "#{greenleaf.character_name} rolls #{attack.rolled.to_i} hits #{attack.hits?} #{greenleaf.character_name}"

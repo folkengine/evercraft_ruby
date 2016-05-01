@@ -9,6 +9,8 @@ gem 'pry'
 gem 'random_name_generator'
 gem 'ruby-enum'
 gem 'logging', '~> 2.1'
+gem 'yamlable'
+gem 'harshed'
 
 group :development do
   gem 'minitest'

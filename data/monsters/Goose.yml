@@ -1,3 +1,24 @@
 --- !ruby/object:Evercraft::Character
 character_name: Goose
 alignment: neutral
+attributes: !ruby/object:Evercraft::Attributes
+  strength: !ruby/object:Evercraft::AttributeScore
+    value: 10
+  dexterity: !ruby/object:Evercraft::AttributeScore
+    value: 10
+  constitution: !ruby/object:Evercraft::AttributeScore
+    value: 10
+  wisdom: !ruby/object:Evercraft::AttributeScore
+    value: 10
+  intelligence: !ruby/object:Evercraft::AttributeScore
+    value: 10
+  charisma: !ruby/object:Evercraft::AttributeScore
+    value: 10
+armor_class: !ruby/object:Evercraft::ArmorClass
+  name: default
+  score: !ruby/object:Evercraft::AttributeScore
+    value: 10
+hit_points_base: !ruby/object:Evercraft::HitPoints
+  score: 5
+damage: 0
+experience: 0

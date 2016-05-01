@@ -86,7 +86,7 @@ module Evercraft
       @combatants.rogue(attack.attacker.character_name).gain_experience(10) if attack.hits?
       @combatants.rogue(attack.target.character_name).take_damage(attack.damage)
       attack.lock
-      alive?(attack.target) ? nil : @combatants.rogue(attack.target.character_name)
+      alive?(attack.target) ? [] : [@combatants.rogue(attack.target.character_name)]
     end
   end
 end

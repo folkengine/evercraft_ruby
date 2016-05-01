@@ -70,7 +70,7 @@ class TestBattle < Minitest::Test
       attack = Evercraft::Attack.new(attacker, opponent)
       puts attack.to_s
       result = my_battle.attack(attack)
-      puts "#{result.character_name} has been killed." unless result.nil?
+      puts "#{result.first.character_name} has been killed." unless result.empty?
 
       my_battle.alive.each do |c|
         puts ">>> #{c.to_s}"
