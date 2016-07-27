@@ -27,7 +27,7 @@ module Evercraft
     end
 
     # http://www.rubydoc.info/gems/hanami-validations#Format
-    attribute :name, type: String, size: 1..MAX_NAME_LENGTH, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
+    validates :name, type: String, size: 1..MAX_NAME_LENGTH, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
 
     attr_reader :name
 
