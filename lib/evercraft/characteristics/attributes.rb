@@ -18,5 +18,9 @@ module Evercraft
       @intelligence = AttributeScore.new(intelligence)
       @charisma = AttributeScore.new(charisma)
     end
+
+    def self.factory(sum: 60, top_limit: 20, bottom_limit: 1)
+
+    end
   end
 end
