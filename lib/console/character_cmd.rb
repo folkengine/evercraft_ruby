@@ -32,28 +32,28 @@ Pry::Commands.create_command 'character' do
   end
 
   def input_character
-    output.print "name: "
+    output.print 'name: '
     character_name = Evercraft::Name.new(gets.chomp)
 
-    output.print "alignment (GOOD|NEUTRAL|EVIL): "
-    alignment = Evercraft::Alignment.parse(gets.chomp)
+    output.print 'alignment (GOOD|NEUTRAL|EVIL): '
+    alignment = Evercraft::Alignment.new(gets.chomp)
 
-    output.print "strength [10]: "
+    output.print 'strength [10]: '
     strength = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
-    output.print "dexterity [10]: "
+    output.print 'dexterity [10]: '
     dexterity = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
-    output.print "constitution [10]: "
+    output.print 'constitution [10]: '
     constitution = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
-    output.print "wisdom [10]: "
+    output.print 'wisdom [10]: '
     wisdom = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
-    output.print "intelligence [10]: "
+    output.print 'intelligence [10]: '
     intelligence = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
-    output.print "charisma [10]: "
+    output.print 'charisma [10]: '
     charisma = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
     attributes = Evercraft::Attributes.new(

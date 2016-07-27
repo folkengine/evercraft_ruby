@@ -4,7 +4,7 @@ class TestReplay < Minitest::Test
   include Evercraft
 
   def setup
-    @battle = Battle.test_factory(true)
+    @battle = Battle.test_factory_playout
     @replay = Replay.new(@battle)
   end
 

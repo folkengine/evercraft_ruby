@@ -66,12 +66,15 @@ module Evercraft
       self
     end
 
-    def self.test_factory(played_out = false)
+    def self.test_factory
       rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
       2.times { rogues.add(Evercraft::Character.test_factory) }
       my_battle = Evercraft::Battle.new(combatants: rogues)
-      return my_battle unless played_out
-      my_battle.playout
+      return my_battle
+    end
+
+    def self.test_factory_playout
+      test_factory.playout
     end
 
     private

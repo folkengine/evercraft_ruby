@@ -30,8 +30,8 @@ class TestCharacter < Minitest::Test
   end
 
   def test_alignment
-    character = Character.new(alignment: Alignment::GOOD)
-    assert_equal character.alignment, Alignment::GOOD
+    character = Character.new(alignment: 'good')
+    assert_equal character.alignment, Alignment.new(:GOOD)
   end
 
   def test_hit_points

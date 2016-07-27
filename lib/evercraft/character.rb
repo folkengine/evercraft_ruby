@@ -9,14 +9,14 @@ module Evercraft
     attr_reader :character_name, :alignment, :attributes, :armor_class, :damage, :experience
 
     def initialize(character_name: Evercraft::Name.test_factory,
-                   alignment: Evercraft::Alignment::NEUTRAL,
+                   alignment: 'neutral',
                    attributes: Attributes.new,
                    armor_class: ArmorClass.new,
                    hit_points: HitPoints.new,
                    damage: 0,
                    experience: 0)
       @character_name = Evercraft::Name.new(character_name).to_s.freeze
-      @alignment = alignment.freeze
+      @alignment = Alignment.new(alignment)
       @attributes = attributes
       @armor_class = armor_class
       @hit_points_base = HitPoints.new(hit_points)
@@ -95,7 +95,7 @@ module Evercraft
     end
 
     def self.test_factory
-      Character.new(alignment: Evercraft::Alignment.values.sample)
+      Character.new(alignment: Evercraft::Alignment.test_factory)
     end
   end
 end
