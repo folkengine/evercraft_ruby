@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-# source 'https://production.cf.rubygems.org'
 
 # Specify your gem's dependencies in evercraft.gemspec
 gemspec
