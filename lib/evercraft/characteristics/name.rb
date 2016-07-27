@@ -30,7 +30,7 @@ module Evercraft
       @name = name.to_s
       raise CharacterStateException.new("Invalid Name: #{name}") unless valid?
     end
-    
+
     def to_s
       @name
     end
