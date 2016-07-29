@@ -17,18 +17,13 @@ require 'random_name_generator'
 #
 module Evercraft
   class Name
-    include Hanami::Validations
-
-    MAX_NAME_LENGTH = 64
-
     attr_reader :name
-
-    # http://www.rubydoc.info/gems/hanami-validations#Format
-    validates :name, type: String, size: 1..MAX_NAME_LENGTH, presence: true, format: /\A[\-_a-zA-Z1234567890]+\z/
 
     def initialize(name)
       @name = name.to_s
-      raise CharacterStateException.new("Invalid Name: #{name}") unless valid?
+
+      n = NameValidator.new(name: name.to_s)
+      raise CharacterStateException.new("Invalid Name: #{name}") unless n.validate.success?
     end
 
     def to_s
@@ -37,6 +32,15 @@ module Evercraft
 
     def self.test_factory
       Name.new(RandomNameGenerator.flip_mode.compose)
+    end
+
+    class NameValidator
+      include Hanami::Validations
+      MAX_NAME_LENGTH = 64
+
+      validations do
+        required(:name) { str? & size?(1..MAX_NAME_LENGTH) & filled? & format?(/\A[\-_a-zA-Z1234567890]+\z/) }
+      end
     end
   end
 end
