@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'colorize'
-gem 'hanami-validations', '~> 0.5.0'
+gem 'hanami-validations', '~> 0.6.0'
 gem 'pry'
 gem 'random_name_generator'
 gem 'logging', '~> 2.1'
