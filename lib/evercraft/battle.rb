@@ -84,6 +84,7 @@ module Evercraft
       @combatants.add(attack.target) unless @combatants.include?(attack.target)
     end
 
+    # This method smells of :reek:FeatureEnvy but ignores them
     def process_attack(attack)
       @attacks << attack
       @combatants.rogue(attack.attacker.character_name).gain_experience(10) if attack.hits?

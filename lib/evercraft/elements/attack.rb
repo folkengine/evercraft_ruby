@@ -35,8 +35,9 @@ module Evercraft
     end
 
     def standard_damage
-      return 1 if attacker.attributes.strength.modifier < 0
-      1 + attacker.attributes.strength.modifier
+      strength_mod = attacker.attributes.strength.modifier
+      return 1 if strength_mod < 0
+      1 + strength_mod
     end
 
     def critical_damage
@@ -46,10 +47,12 @@ module Evercraft
     end
 
     def to_s
-      return "#{attacker.character_name} critically hits #{target.character_name} for #{damage} hit points." if critical?
-      return "#{attacker.character_name} hits #{target.character_name} for #{damage} hit points." if hits?
-      return "#{attacker.character_name} fumbles attacking #{target.character_name}." if fumble?
-      "#{attacker.character_name} misses #{target.character_name}"
+      attacker_name = attacker.character_name
+      target_name = target.character_name
+      return "#{attacker_name} critically hits #{target_name} for #{damage} hit points." if critical?
+      return "#{attacker_name} hits #{target_name} for #{damage} hit points." if hits?
+      return "#{attacker_name} fumbles attacking #{target_name}." if fumble?
+      "#{attacker_name} misses #{target_name}"
     end
 
     private

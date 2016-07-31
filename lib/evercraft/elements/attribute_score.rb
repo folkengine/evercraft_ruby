@@ -1,5 +1,7 @@
 module Evercraft
   class AttributeScore
+    include Comparable
+
     attr_reader :value
 
     DEFAULT_VALUE = 10
@@ -8,7 +10,8 @@ module Evercraft
     MODIFIERS = [-5, -4, -4, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9].freeze
 
     def initialize(value = DEFAULT_VALUE)
-      @value = value.to_int < 1 ? DEFAULT_VALUE : value.to_int
+      intvalue = value.to_int
+      @value = intvalue < 1 ? DEFAULT_VALUE : intvalue
     end
 
     def to_i
@@ -22,6 +25,19 @@ module Evercraft
     def modifier
       return MAX_MODIFIER if @value > 29
       MODIFIERS[@value - 1]
+    end
+
+    def self.test_value
+      4 + Random.rand(16)
+    end
+
+    def <=> (other)
+      us = self.value
+      them = other.to_i
+      result = 0
+      result = -1 if us < them
+      result = 1 if us > them
+      result
     end
   end
 end

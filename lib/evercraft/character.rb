@@ -5,7 +5,7 @@ module Evercraft
   class Character
     include Yamlable
 
-    attr_accessor :damage, :current_experience
+    attr_reader :damage, :current_experience
     attr_reader :character_name, :alignment, :attributes, :armor_class, :damage, :experience
 
     def initialize(character_name: Evercraft::Name.test_factory,
