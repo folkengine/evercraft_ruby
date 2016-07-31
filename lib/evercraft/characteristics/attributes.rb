@@ -19,8 +19,16 @@ module Evercraft
       @charisma = AttributeScore.new(charisma)
     end
 
-    def self.factory(sum: 60, top_limit: 20, bottom_limit: 1)
-
+    def self.test_factory
+      randoms = 6.times.map { 4 + Random.rand(16) }
+      Attributes.new(
+          strength: randoms[0],
+          dexterity: randoms[1],
+          constitution: randoms[2],
+          wisdom: randoms[3],
+          intelligence: randoms[4],
+          charisma: randoms[5]
+      )
     end
   end
 end

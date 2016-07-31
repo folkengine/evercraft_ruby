@@ -1,7 +1,14 @@
+DuplicateMethodCall:
+    max_calls: 3
+
 TooManyInstanceVariables:
     max_instance_variables: 10
 
 IrresponsibleModule:
+    enabled: false
+
+# Covered in RuboCop
+LongParameterList:
     enabled: false
 
 NestedIterators:

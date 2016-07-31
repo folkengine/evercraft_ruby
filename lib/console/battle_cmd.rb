@@ -59,7 +59,7 @@ Pry::Commands.create_command 'battle' do
   end
 
   def replay
-    output.puts "No Battle to replay." if $current_battle.nil?
+    output.puts "No Battle to replay." unless $current_battle
     output.puts "Replaying #{$current_battle.title}"
 
     instant_replay = Evercraft::Replay.new($current_battle)
