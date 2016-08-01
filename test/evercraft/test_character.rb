@@ -114,7 +114,7 @@ class TestCharacter < Minitest::Test
 
   def test_level_effect_on_hitpoints_hercules
     attributes = Attributes.new(strength: 40, dexterity: 15, constitution: 40)
-    hercules = Character.new(experience: 10000, attributes: attributes)
+    hercules = Character.new(experience: 10_000, attributes: attributes)
     assert_equal hercules.hit_points_per_level, 15
     assert_equal hercules.level, 11
     assert_equal 11 * 15, hercules.hit_points

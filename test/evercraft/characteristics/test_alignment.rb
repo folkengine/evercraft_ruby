@@ -7,7 +7,7 @@ class TestAlignment < Minitest::Test
     assert_equal 'evil', Alignment.new('evil').to_s
     assert_equal 'evil', Alignment.new(:evil).to_s
     assert_equal 'good', Alignment.new('GOOD').to_s
-    assert_equal 'neutral', Alignment.new().to_s
+    assert_equal 'neutral', Alignment.new.to_s
     assert_equal 'neutral', Alignment.new('chipper').to_s
   end
 

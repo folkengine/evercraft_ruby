@@ -1,2 +1,2 @@
-class CharacterStateException < Exception
+class CharacterStateException < RuntimeError
 end
