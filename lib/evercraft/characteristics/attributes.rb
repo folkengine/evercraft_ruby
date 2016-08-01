@@ -2,7 +2,7 @@ module Evercraft
   class Attributes
     attr_reader :strength, :dexterity, :constitution, :wisdom, :intelligence, :charisma
 
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/ParameterLists
     def initialize(
         strength: AttributeScore.new,
         dexterity: AttributeScore.new,

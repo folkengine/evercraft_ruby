@@ -92,6 +92,7 @@ class TestAttack < Minitest::Test
     assert !attack.hits?
   end
 
+  # rubocop:disable Metrics/AbcSize
   def test_dex_mod_armor_high_roll
     attack_roll = Roll.new(10)
     hercules = Character.new(character_name: 'Hercules', attributes: Attributes.new(strength: 18))

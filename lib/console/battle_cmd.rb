@@ -1,5 +1,6 @@
 require_relative '../evercraft'
 
+# rubocop:disable Style/GlobalVars
 Pry::Commands.create_command 'battle' do
   description 'Battle related commands'
 
@@ -11,6 +12,8 @@ Pry::Commands.create_command 'battle' do
     opt.on :y, :yaml, 'Dump out all Objects as YAML'
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/PerceivedComplexity
   # :reek:TooManyStatements
   def process
     if opts.replay?

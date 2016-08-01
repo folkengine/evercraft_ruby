@@ -8,6 +8,7 @@ module Evercraft
     attr_reader :damage, :current_experience
     attr_reader :character_name, :alignment, :attributes, :armor_class, :damage, :experience
 
+    # rubocop:disable Metrics/ParameterLists
     def initialize(character_name: Evercraft::Name.test_factory,
                    alignment: 'neutral',
                    attributes: Attributes.new,

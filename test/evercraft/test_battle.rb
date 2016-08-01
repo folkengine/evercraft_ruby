@@ -56,7 +56,6 @@ class TestBattle < Minitest::Test
     assert !result.nil?
   end
 
-  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def test_drive
     rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)

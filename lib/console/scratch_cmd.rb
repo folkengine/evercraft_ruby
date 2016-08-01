@@ -3,6 +3,7 @@ require_relative '../evercraft'
 Pry::Commands.create_command 'scratch' do
   description 'Pry Scratch Pad'
 
+  # rubocop:disable Metrics/AbcSize
   # :reek:TooManyStatements
   def process
     output.print '? '

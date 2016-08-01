@@ -1,6 +1,9 @@
 require 'colorize'
 require_relative '../evercraft'
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Style/GlobalVars
 $current_character = nil
 
 Pry::Commands.create_command 'character' do

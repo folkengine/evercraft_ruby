@@ -31,6 +31,7 @@ module Evercraft
       4 + Random.rand(16)
     end
 
+    # :reek:FeatureEnvy
     def <=>(other)
       us = value
       them = other.to_i
