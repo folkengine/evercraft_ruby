@@ -31,8 +31,8 @@ module Evercraft
       4 + Random.rand(16)
     end
 
-    def <=> (other)
-      us = self.value
+    def <=>(other)
+      us = value
       them = other.to_i
       result = 0
       result = -1 if us < them

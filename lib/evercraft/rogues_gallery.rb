@@ -10,8 +10,8 @@ module Evercraft
     def initialize(title = RandomNameGenerator.flip_mode.compose, storage_base: RoguesGallery.default_storage_base)
       @title = title.to_s
       @rogues = Harshed::Harsh.new(:character_name,
-                            storage_base: storage_base,
-                            storage_folder: @title)
+                                   storage_base: storage_base,
+                                   storage_folder: @title)
     end
 
     def add(new_rogues)
@@ -52,15 +52,15 @@ module Evercraft
     end
 
     def reset
-      @rogues.to_a.each { |c| c.reset }
+      @rogues.to_a.each(&:reset)
     end
 
     def promote
-      @rogues.to_a.each { |c| c.level_up }
+      @rogues.to_a.each(&:level_up)
     end
 
     def to_s
-      s = "#{@title}"
+      s = @title.to_s
       to_a.each do |rogue|
         s += "\n* #{rogue}"
       end
@@ -69,7 +69,7 @@ module Evercraft
 
     def self.test_factory(how_many_rogues = 0)
       rogues_gallery = RoguesGallery.new(RandomNameGenerator.flip_mode.compose + 's')
-      how_many_rogues.times { rogues_gallery.add(Evercraft::Character.test_factory)  }
+      how_many_rogues.times { rogues_gallery.add(Evercraft::Character.test_factory) }
       rogues_gallery
     end
 

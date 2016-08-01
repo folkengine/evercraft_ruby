@@ -13,24 +13,25 @@ Pry::Commands.create_command 'character' do
     opt.on :r, :random, 'Creates a random new Character'
   end
 
+  # :reek:NilCheck
   def process
-    begin
-      if opts.add?
-        $current_rogues_gallery.add($current_character) if !$current_character.nil?
-      elsif opts.new?
-        $current_character = input_character
-        output.puts $current_character
-      elsif opts.random?
-        $current_character = Evercraft::Character.test_factory
-        output.puts $current_character.to_yaml
-      elsif opts.current?
-        output.puts $current_character.nil? ? 'No current Character' : $current_character.to_yaml
-      end
-    rescue CharacterStateException
-      output.puts 'ERROR: Invalid Character Name'.colorize(:red).bold
+    if opts.add?
+      $current_rogues_gallery.add($current_character) unless $current_character.nil?
+    elsif opts.new?
+      $current_character = input_character
+      output.puts $current_character
+    elsif opts.random?
+      $current_character = Evercraft::Character.test_factory
+      output.puts $current_character.to_yaml
+    elsif opts.current?
+      output.puts $current_character.nil? ? 'No current Character' : $current_character.to_yaml
     end
+  rescue CharacterStateException
+    output.puts 'ERROR: Invalid Character Name'.colorize(:red).bold
   end
 
+  # :reek:DuplicateMethodCall
+  # :reek:TooManyStatements
   def input_character
     output.print 'name: '
     character_name = Evercraft::Name.new(gets.chomp)
@@ -57,12 +58,13 @@ Pry::Commands.create_command 'character' do
     charisma = Evercraft::AttributeScore.new(gets.chomp.to_i)
 
     attributes = Evercraft::Attributes.new(
-        strength: strength,
-        dexterity: dexterity,
-        constitution: constitution,
-        wisdom: wisdom,
-        intelligence: intelligence,
-        charisma: charisma)
+      strength: strength,
+      dexterity: dexterity,
+      constitution: constitution,
+      wisdom: wisdom,
+      intelligence: intelligence,
+      charisma: charisma
+    )
 
     Evercraft::Character.new(character_name: character_name, alignment: alignment, attributes: attributes)
   end

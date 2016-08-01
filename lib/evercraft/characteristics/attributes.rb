@@ -9,7 +9,8 @@ module Evercraft
         constitution: AttributeScore.new,
         wisdom: AttributeScore.new,
         intelligence: AttributeScore.new,
-        charisma: AttributeScore.new)
+        charisma: AttributeScore.new
+    )
 
       @strength = AttributeScore.new(strength)
       @dexterity = AttributeScore.new(dexterity)
@@ -20,14 +21,14 @@ module Evercraft
     end
 
     def self.test_factory
-      randoms = 6.times.map { 4 + Random.rand(16) }
+      randoms = Array.new(6) { 4 + Random.rand(16) }
       Attributes.new(
-          strength: randoms[0],
-          dexterity: randoms[1],
-          constitution: randoms[2],
-          wisdom: randoms[3],
-          intelligence: randoms[4],
-          charisma: randoms[5]
+        strength: randoms[0],
+        dexterity: randoms[1],
+        constitution: randoms[2],
+        wisdom: randoms[3],
+        intelligence: randoms[4],
+        charisma: randoms[5]
       )
     end
   end

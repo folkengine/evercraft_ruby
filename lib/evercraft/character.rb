@@ -65,9 +65,7 @@ module Evercraft
       hit_points - @damage
     end
 
-    def hit_points_base
-      @hit_points_base
-    end
+    attr_reader :hit_points_base
 
     def level
       (@experience / 1000).to_i + 1

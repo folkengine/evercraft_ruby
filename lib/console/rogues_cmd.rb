@@ -2,12 +2,13 @@ require_relative '../evercraft'
 
 $current_rogues_gallery = nil
 
+# :reek:NilCheck
 def set_prompt(gallery_name = nil)
   gallery_name = gallery_name.nil? ? '' : " #{gallery_name}"
   Pry.config.prompt_name = "EverCraft v.#{Evercraft::VERSION}#{gallery_name}"
 
   # rubocop:disable Lint/UnusedBlockArgument
-  Pry.config.prompt = Proc.new { |target_self, nest_level, pry| "#{pry.config.prompt_name}> " }
+  Pry.config.prompt = proc { |target_self, nest_level, pry| "#{pry.config.prompt_name}> " }
 end
 
 Pry::Commands.create_command 'rogues' do
@@ -23,6 +24,8 @@ Pry::Commands.create_command 'rogues' do
     opt.on :y, :yaml, 'Displays information as YAML'
   end
 
+  # :reek:NilCheck
+  # :reek:TooManyStatements
   def process
     if opts.new?
       $current_rogues_gallery = Evercraft::RoguesGallery.test_factory(2)
@@ -50,6 +53,7 @@ Pry::Commands.create_command 'rogues' do
     end
   end
 
+  # :reek:NilCheck
   def get_arg(args)
     args[0].nil? ? nil : args[0].to_s
   end

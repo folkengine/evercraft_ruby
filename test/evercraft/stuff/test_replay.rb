@@ -1,4 +1,4 @@
-  require_relative '../../test_helper'
+require_relative '../../test_helper'
 
 class TestReplay < Minitest::Test
   include Evercraft
@@ -12,15 +12,13 @@ class TestReplay < Minitest::Test
     alive = @replay.battle.alive.length
     assert_equal alive, 2
     attack = @replay.step_forward
-    while !attack.nil?
-      attack = @replay.step_forward
-    end
+    attack = @replay.step_forward until attack.nil?
     assert_equal @replay.battle.alive.length, 1
   end
 
   def test_replay
     attack = @replay.step_forward
-    while !attack.nil?
+    until attack.nil?
       @replay.replay.combatants
       attack = @replay.step_forward
       unless attack.nil?

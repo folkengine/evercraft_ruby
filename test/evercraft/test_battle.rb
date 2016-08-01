@@ -56,6 +56,8 @@ class TestBattle < Minitest::Test
     assert !result.nil?
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def test_drive
     rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
     4.times { rogues.add(Evercraft::Character.test_factory) }
@@ -63,7 +65,7 @@ class TestBattle < Minitest::Test
 
     puts my_battle.title
 
-    while(my_battle.alive.length > 1)
+    while my_battle.alive.length > 1
       attacker = my_battle.alive.sample
       opponent = my_battle.random_opponent(attacker)
 
@@ -73,7 +75,7 @@ class TestBattle < Minitest::Test
       puts "#{result.first.character_name} has been killed." unless result.empty?
 
       my_battle.alive.each do |c|
-        puts ">>> #{c.to_s}"
+        puts ">>> #{c}"
       end
       puts
     end

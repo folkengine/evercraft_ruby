@@ -8,7 +8,8 @@ module Evercraft
 
     def initialize(
         title: "Battle of #{RandomNameGenerator.flip_mode.compose}",
-        combatants: RoguesGallery.new(RandomNameGenerator.flip_mode.compose))
+        combatants: RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
+    )
       @title = title
       @combatants = combatants
       @attacks = []
@@ -57,7 +58,7 @@ module Evercraft
     end
 
     def playout
-      while(alive.length > 1)
+      while alive.length > 1
         attacker = alive.sample
         opponent = random_opponent(attacker)
         attack = Evercraft::Attack.new(attacker, opponent)
@@ -70,7 +71,7 @@ module Evercraft
       rogues = Evercraft::RoguesGallery.new(RandomNameGenerator.flip_mode.compose)
       2.times { rogues.add(Evercraft::Character.test_factory) }
       my_battle = Evercraft::Battle.new(combatants: rogues)
-      return my_battle
+      my_battle
     end
 
     def self.test_factory_playout

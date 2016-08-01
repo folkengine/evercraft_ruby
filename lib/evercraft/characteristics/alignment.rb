@@ -1,16 +1,15 @@
 # http://easydamus.com/alignmentreal.html
 module Evercraft
   class Alignment
-
     def initialize(value = 'neutral')
-      case value.to_s.strip.downcase
-        when 'good'
-          @alignment = 'good'
-        when 'evil'
-          @alignment = 'evil'
-        else
-          @alignment = 'neutral'
-      end
+      @alignment = case value.to_s.strip.downcase
+                   when 'good'
+                     'good'
+                   when 'evil'
+                     'evil'
+                   else
+                     'neutral'
+                   end
       @alignment.freeze
     end
 

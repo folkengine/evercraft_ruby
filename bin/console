@@ -7,7 +7,6 @@ require 'pry'
 require 'console/commands'
 require 'evercraft'
 
-
 puts
 File.open(File.join(File.dirname(__FILE__), 'evercraft.txt')) do |file_handle|
   file_handle.each_line do |line|

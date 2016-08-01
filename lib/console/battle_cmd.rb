@@ -11,6 +11,7 @@ Pry::Commands.create_command 'battle' do
     opt.on :y, :yaml, 'Dump out all Objects as YAML'
   end
 
+  # :reek:TooManyStatements
   def process
     if opts.replay?
       replay
@@ -32,6 +33,7 @@ Pry::Commands.create_command 'battle' do
     end
   end
 
+  # :reek:TooManyStatements
   def turn
     combatants = $current_battle.alive.shuffle
 
@@ -58,14 +60,17 @@ Pry::Commands.create_command 'battle' do
     end
   end
 
+  # :reek:NilCheck
+  # :reek:TooManyStatements
   def replay
-    output.puts "No Battle to replay." unless $current_battle
+    output.puts 'No Battle to replay.' unless $current_battle
     output.puts "Replaying #{$current_battle.title}"
 
     instant_replay = Evercraft::Replay.new($current_battle)
 
     attack = instant_replay.step_forward
-    while !attack.nil?
+
+    until attack.nil?
 
       output.puts "Attack #{instant_replay.pointer}: "
 

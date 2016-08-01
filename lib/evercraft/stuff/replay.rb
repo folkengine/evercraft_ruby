@@ -1,6 +1,5 @@
 module Evercraft
   class Replay
-
     attr_reader :battle, :replay, :pointer
 
     def initialize(battle)
@@ -17,7 +16,7 @@ module Evercraft
     end
 
     def step_backward
-      return nil if @pointer == 0
+      return nil if @pointer.zero?
       @pointer -= 1
       current_attack = @attacks[@pointer]
       @replay.attack(current_attack)
